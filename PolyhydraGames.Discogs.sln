@@ -5,6 +5,8 @@ VisualStudioVersion = 17.12.35707.178 d17.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PolyhydraGames.Discogs", "DiscogsClient\PolyhydraGames.Discogs.csproj", "{17C0F687-9174-48B1-B2BB-C07C41947F46}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscogsClient.Test", "DiscogsClient.Test\DiscogsClient.Test.csproj", "{88C87C4F-F19A-48D2-9B06-B6A419082E4B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{17C0F687-9174-48B1-B2BB-C07C41947F46}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{17C0F687-9174-48B1-B2BB-C07C41947F46}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{17C0F687-9174-48B1-B2BB-C07C41947F46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88C87C4F-F19A-48D2-9B06-B6A419082E4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88C87C4F-F19A-48D2-9B06-B6A419082E4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88C87C4F-F19A-48D2-9B06-B6A419082E4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88C87C4F-F19A-48D2-9B06-B6A419082E4B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
