@@ -24,11 +24,13 @@ jobs:
     inputs:
       command: 'build'
       projects: '$(Project.Path)'
+      arguments: '-c $(BuildConfiguration)' 
   - task: DotNetCoreCLI@2
     inputs:
       command: 'pack'
       packagesToPack: '$(Project.Path)' 
       versioningScheme: 'byBuildNumber'
+      arguments: '-c $(BuildConfiguration)'       
   - task: NuGetCommand@2
     displayName: NuGet push
     inputs:
