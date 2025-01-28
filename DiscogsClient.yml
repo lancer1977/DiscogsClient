@@ -21,18 +21,17 @@ jobs:
   steps:
   - checkout: self
   - task: DotNetCoreCLI@2
-    displayName: dotnet restore
+    displayName: dotnet build
     inputs:
-      command: restore
-      projects: $(Project.Path)
-      feedRestore: 015fc12f-cd63-4ab4-8d6a-dc889e53bf70
+      command: build
+      searchPatternPack: $(Project.Path) 
+      arguments: --configuration $(BuildConfiguration)
   - task: DotNetCoreCLI@2
     displayName: dotnet pack
     inputs:
       command: pack
       searchPatternPack: $(Project.Path)
-      versioningScheme: byBuildNumber
-      arguments: --configuration $(BuildConfiguration)
+      versioningScheme: byBuildNumber 
   - task: NuGetCommand@2
     displayName: NuGet push
     inputs:
