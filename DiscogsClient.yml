@@ -25,11 +25,10 @@ jobs:
       command: 'build'
       projects: '$(Project.Path)'
   - task: DotNetCoreCLI@2
-    displayName: dotnet pack
     inputs:
-      command: pack
-      searchPatternPack: $(Project.Path)
-      versioningScheme: byBuildNumber 
+      command: 'pack'
+      packagesToPack: '$(Project.Path)' 
+      versioningScheme: 'byBuildNumber'
   - task: NuGetCommand@2
     displayName: NuGet push
     inputs:
