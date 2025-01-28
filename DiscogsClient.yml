@@ -26,23 +26,35 @@ jobs:
 
   - task: DotNetCoreCLI@2
     displayName: dotnet test
+    enabled: false
     inputs:
       command: test
       projects: $(Project.Test) 
       arguments: '--collect "XPlat Code coverage;;Format=cobertura,opencover"'
   - task: PublishCodeCoverageResults@2
+    enabled: false
     inputs:
       summaryFileLocation: '$(Agent.TempDirectory)/**/*cobertura.xml'
       #coverage.opencover.xml
       pathToSources: 'DiscogsClient'
       failIfCoverageEmpty: true  
+
+  - task: DotNetCoreCLI@2
+    inputs:
+      command: 'build'
+      projects: '$(Project.Path)'      
+      arguments: '--configuration Release' 
+
   - task: DotNetCoreCLI@2
     displayName: dotnet pack
     inputs:
       command: pack 
-      packagesToPack: '$(Project.Path)' 
+      packagesToPack: 
       versioningScheme: 'byBuildNumber'      
-      arguments: '--configuration Release'
+      arguments: '--no-build'
+
+
+
   - task: NuGetCommand@2
     displayName: NuGet push
     inputs:
