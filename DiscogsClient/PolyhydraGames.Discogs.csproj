@@ -9,7 +9,7 @@
 
     <PackageProjectUrl></PackageProjectUrl>
     <RepositoryUrl>https://github.com/lancer1977/DiscogsClient</RepositoryUrl>
-    <PackageLicenseUrl>https://github.com/lancer1977/DiscogsClient/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageLicense>https://github.com/lancer1977/DiscogsClient/blob/master/LICENSE</PackageLicense>
     <Description>C# Client library for Discogs API v2.0
 
 Features
