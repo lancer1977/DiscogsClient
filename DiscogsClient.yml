@@ -42,7 +42,7 @@ jobs:
       command: 'pack'
       packagesToPack: '$(Project.Path)' 
       versioningScheme: 'byBuildNumber'      
-      arguments: '-c $(BuildConfiguration)'       
+      arguments: '-c $(BuildConfiguration) --output $(Build.SourcesDirectory)'       
   - task: NuGetCommand@2
     name: 'Push'
     inputs:
