@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DiscogsClient\DiscogsClient.csproj" />
+    <ProjectReference Include="..\DiscogsClient\PolyhydraGames.Discogs.csproj" />
   </ItemGroup>
 
 </Project>

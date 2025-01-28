@@ -5,8 +5,8 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <AssemblyName>DiscogsClient</AssemblyName>
     <RootNamespace>DiscogsClient</RootNamespace>
-    <Authors>David Desmaisons</Authors>
-    <Version>2.7.1</Version>
+    <Authors>David Desmaisons, Chris Richmond</Authors>
+
     <PackageProjectUrl></PackageProjectUrl>
     <RepositoryUrl>https://github.com/David-Desmaisons/DiscogsClient</RepositoryUrl>
     <PackageLicenseUrl>https://github.com/David-Desmaisons/DiscogsClient/blob/master/LICENSE</PackageLicenseUrl>
