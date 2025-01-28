@@ -38,11 +38,18 @@ jobs:
       failIfCoverageEmpty: true  
   - task: DotNetCoreCLI@2
     name: 'Pack'
+    enabled: false
     inputs:
       command: 'pack'
       packagesToPack: '$(Project.Path)' 
       versioningScheme: 'byBuildNumber'      
       arguments: '-c $(BuildConfiguration) --output $(Build.SourcesDirectory)'       
+  - task: DotNetCoreCLI@2
+    inputs:
+      command: 'pack'
+      packagesToPack: '$(Project.Path)'
+      includesymbols: true
+      versioningScheme: 'off'
   - task: NuGetCommand@2
     name: 'Push'
     inputs:
