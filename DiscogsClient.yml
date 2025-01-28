@@ -39,11 +39,10 @@ jobs:
   - task: DotNetCoreCLI@2
     displayName: dotnet pack
     inputs:
-      command: pack
-      searchPatternPack: $(Project.Path)
-      versioningScheme: byBuildNumber
-      arguments: --configuration $(BuildConfiguration)
-      modifyOutputPath: false
+      command: pack 
+      packagesToPack: '$(Project.Path)' 
+      versioningScheme: 'byBuildNumber'      
+      arguments: --configuration $(BuildConfiguration) 
   - task: NuGetCommand@2
     displayName: NuGet push
     inputs:
