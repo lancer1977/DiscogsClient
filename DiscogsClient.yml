@@ -50,6 +50,7 @@ jobs:
       packagesToPack: '$(Project.Path)'
       includesymbols: true
       versioningScheme: 'off'
+      modifyOutputPath: false
   - task: NuGetCommand@2
     name: 'Push'
     inputs:
@@ -57,6 +58,7 @@ jobs:
       packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
       nuGetFeedType: 'external'
       publishFeedCredentials: 'Nuget.org'
+      
   - task: ado-discord-webhook@1
     enabled: false
     inputs:
