@@ -19,6 +19,8 @@ trigger:
 jobs:
 - job: Phase_1 
   cancelTimeoutInMinutes: 1
+  pool:
+    name: Default
   steps:
   - checkout: self
 
@@ -35,18 +37,13 @@ jobs:
       pathToSources: 'DiscogsClient'
       failIfCoverageEmpty: true  
   - task: DotNetCoreCLI@2
-    displayName: dotnet restore
-    inputs:
-      command: restore
-      projects: $(Project.Path)
-      feedRestore: 015fc12f-cd63-4ab4-8d6a-dc889e53bf70
-  - task: DotNetCoreCLI@2
     displayName: dotnet pack
     inputs:
       command: pack
       searchPatternPack: $(Project.Path)
       versioningScheme: byBuildNumber
       arguments: --configuration $(BuildConfiguration)
+      modifyOutputPath: false
   - task: NuGetCommand@2
     displayName: NuGet push
     inputs:
@@ -60,4 +57,4 @@ jobs:
       name: 'Polyhydra Build'
       avatar: 'https://scontent-iad3-1.xx.fbcdn.net/v/t39.30808-6/277759422_459407522643032_5740191239763665615_n.png?_nc_cat=109&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=Eh7rt73EuYcAX-1w6EJ&_nc_ht=scontent-iad3-1.xx&oh=00_AfA8K4k2WtaqlaA0CEznY-Hk2DZY3gsdDwPp-XOw3L1B3Q&oe=64121C61'
       messageType: 'content'
-      content: 'Learning.Dto Completed Build: $(Build.BuildNumber)'
+      content: 'Discogs Completed Build: $(Build.BuildNumber)'
