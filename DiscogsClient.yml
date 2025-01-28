@@ -19,8 +19,6 @@ trigger:
 jobs:
 - job: Phase_1 
   cancelTimeoutInMinutes: 1
-  pool:
-    name: Default
   steps:
   - checkout: self
 
