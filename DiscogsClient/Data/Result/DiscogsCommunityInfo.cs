@@ -1,8 +1,7 @@
-﻿namespace DiscogsClient.Data.Result
+﻿namespace DiscogsClient.Data.Result;
+
+public class DiscogsCommunityInfo
 {
-    public class DiscogsCommunityInfo
-    {
-        public int want { get; set; }
-        public int have { get; set; }
-    }
+    public int want { get; set; }
+    public int have { get; set; }
 }

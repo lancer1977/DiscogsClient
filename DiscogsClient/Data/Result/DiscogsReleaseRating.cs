@@ -1,9 +1,8 @@
-﻿namespace DiscogsClient.Data.Result
+﻿namespace DiscogsClient.Data.Result;
+
+public class DiscogsReleaseRating
 {
-    public class DiscogsReleaseRating
-    {
-        public string username { get; set; }
-        public int release_id { get; set; }
-        public int rating { get; set; }
-    }
+    public string username { get; set; }
+    public int release_id { get; set; }
+    public int rating { get; set; }
 }

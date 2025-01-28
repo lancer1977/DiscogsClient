@@ -1,8 +1,7 @@
-﻿namespace DiscogsClient.Data.Result
+﻿namespace DiscogsClient.Data.Result;
+
+public enum DiscogsSortOrderType
 {
-    public enum DiscogsSortOrderType
-    {
-        asc,
-        desc
-    }
+    asc,
+    desc
 }

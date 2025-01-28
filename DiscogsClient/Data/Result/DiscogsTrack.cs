@@ -1,7 +1,6 @@
-﻿namespace DiscogsClient.Data.Result 
+﻿namespace DiscogsClient.Data.Result;
+
+public class DiscogsTrack : DiscogsSubtrack
 {
-    public class DiscogsTrack : DiscogsSubtrack
-    {
-        public DiscogsSubtrack[] sub_tracks { get; set; }
-    }
+    public DiscogsSubtrack[] sub_tracks { get; set; }
 }

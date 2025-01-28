@@ -1,10 +1,9 @@
-﻿namespace DiscogsClient.Data.Query 
+﻿namespace DiscogsClient.Data.Query;
+
+public enum DiscogsEntityType 
 {
-    public enum DiscogsEntityType 
-    {
-        release,
-        master,
-        artist,
-        label
-    }
+    release,
+    master,
+    artist,
+    label
 }
