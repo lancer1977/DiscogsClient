@@ -13,6 +13,7 @@ trigger:
     include:
     - DiscogsClient
 
+
 jobs:
 - job: Phase_1 
   cancelTimeoutInMinutes: 1
@@ -20,28 +21,41 @@ jobs:
     name: Default
   steps:
   - checkout: self
+
   - task: DotNetCoreCLI@2
+    displayName: dotnet test
     inputs:
-      command: 'build'
-      projects: '$(Project.Path)'
-      arguments: '-c $(BuildConfiguration)' 
+      command: test
+      projects: $(Project.Test) 
+      arguments: '--collect "XPlat Code coverage;;Format=cobertura,opencover"'
+  - task: PublishCodeCoverageResults@2
+    inputs:
+      summaryFileLocation: '$(Agent.TempDirectory)/**/*cobertura.xml'
+      #coverage.opencover.xml
+      pathToSources: 'DiscogsClient'
+      failIfCoverageEmpty: false  
+  - task: PublishCodeCoverageResults@2
+    inputs:
+      summaryFileLocation: '$(Agent.TempDirectory)/**/*opencover.xml'
+      pathToSources: 'DiscogsClient'
+      failIfCoverageEmpty: true  
   - task: DotNetCoreCLI@2
     inputs:
       command: 'pack'
       packagesToPack: '$(Project.Path)' 
-      versioningScheme: 'byBuildNumber'
-      arguments: '-c $(BuildConfiguration)'       
+      versioningScheme: 'byBuildNumber'      
   - task: NuGetCommand@2
-    displayName: NuGet push
     inputs:
-      command: push
-      feedPublish: 015fc12f-cd63-4ab4-8d6a-dc889e53bf70
-      allowPackageConflicts: true
+      command: 'push'
+      packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+      nuGetFeedType: 'external'
+      publishFeedCredentials: 'Nuget.org'
   - task: ado-discord-webhook@1
+    enabled: false
     inputs:
       channelId: '1083779130576879656'
       webhookKey: 'QAhq2PpBl9iUSv51rQNPajpVZivOdj-hMcClCwHBz7OFdyxuI9Ni_Ykvglpxw53oDX9D'
       name: 'Polyhydra Build'
       avatar: 'https://scontent-iad3-1.xx.fbcdn.net/v/t39.30808-6/277759422_459407522643032_5740191239763665615_n.png?_nc_cat=109&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=Eh7rt73EuYcAX-1w6EJ&_nc_ht=scontent-iad3-1.xx&oh=00_AfA8K4k2WtaqlaA0CEznY-Hk2DZY3gsdDwPp-XOw3L1B3Q&oe=64121C61'
       messageType: 'content'
-      content: 'Learning.Dto Completed Build: $(Build.BuildNumber)'
+      content: 'Discogs Completed Build: $(Build.BuildNumber)'
