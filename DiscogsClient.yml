@@ -37,11 +37,14 @@ jobs:
       pathToSources: 'DiscogsClient'
       failIfCoverageEmpty: true  
   - task: DotNetCoreCLI@2
+    name: 'Pack'
     inputs:
       command: 'pack'
       packagesToPack: '$(Project.Path)' 
       versioningScheme: 'byBuildNumber'      
+      arguments: '-c $(BuildConfiguration)'       
   - task: NuGetCommand@2
+    name: 'Push'
     inputs:
       command: 'push'
       packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
