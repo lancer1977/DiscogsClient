@@ -21,11 +21,9 @@ jobs:
   steps:
   - checkout: self
   - task: DotNetCoreCLI@2
-    displayName: dotnet build
     inputs:
-      command: build
-      searchPatternPack: $(Project.Path) 
-      arguments: --configuration $(BuildConfiguration)
+      command: 'build'
+      projects: '$(Project.Path)'
   - task: DotNetCoreCLI@2
     displayName: dotnet pack
     inputs:
