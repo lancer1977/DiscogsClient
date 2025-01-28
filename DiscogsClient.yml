@@ -21,12 +21,6 @@ jobs:
   steps:
   - checkout: self
   - task: DotNetCoreCLI@2
-    displayName: dotnet restore
-    inputs:
-      command: restore
-      projects: $(Project.Path)
-      feedRestore: 015fc12f-cd63-4ab4-8d6a-dc889e53bf70
-  - task: DotNetCoreCLI@2
     displayName: dotnet pack
     inputs:
       command: pack
