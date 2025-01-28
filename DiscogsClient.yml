@@ -35,11 +35,6 @@ jobs:
       summaryFileLocation: '$(Agent.TempDirectory)/**/*cobertura.xml'
       #coverage.opencover.xml
       pathToSources: 'DiscogsClient'
-      failIfCoverageEmpty: false  
-  - task: PublishCodeCoverageResults@2
-    inputs:
-      summaryFileLocation: '$(Agent.TempDirectory)/**/*opencover.xml'
-      pathToSources: 'DiscogsClient'
       failIfCoverageEmpty: true  
   - task: DotNetCoreCLI@2
     inputs:
