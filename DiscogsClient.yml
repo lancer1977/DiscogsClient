@@ -8,10 +8,10 @@ variables:
 trigger:
   branches:
     include:
-    - refs/heads/main
+    - refs/heads/master
   paths:
     include:
-    - Dtos
+    - DiscogsClient
 
 jobs:
 - job: Phase_1 
