@@ -3,6 +3,8 @@ name: 2.7.2.$(rev:r)
 variables: 
 - name: Project.Path
   value: '**/PolyhydraGames.Discogs.csproj'
+- name: Project.Test
+  value: '**/DiscogsClient.Test.csproj'
 - name: BuildConfiguration
   value: Release
 trigger:
