@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <AssemblyName>DiscogsClient</AssemblyName>
+    <AssemblyName>PolyhydraGames.DiscogsClient</AssemblyName>
     <RootNamespace>DiscogsClient</RootNamespace>
     <Authors>David Desmaisons, Chris Richmond</Authors>
 
