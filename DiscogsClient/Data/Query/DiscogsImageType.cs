@@ -1,8 +1,7 @@
-﻿namespace DiscogsClient.Data.Query
+﻿namespace DiscogsClient.Data.Query;
+
+public enum DiscogsImageFormatType
 {
-    public enum DiscogsImageFormatType
-    {
-        Normal,
-        Thumbnail
-    }
+    Normal,
+    Thumbnail
 }

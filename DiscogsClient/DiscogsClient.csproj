@@ -1,38 +1,38 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <AssemblyName>DiscogsClient</AssemblyName>
-    <RootNamespace>DiscogsClient</RootNamespace>
-    <Authors>David Desmaisons</Authors>
-    <Version>2.7.1</Version>
-    <PackageProjectUrl></PackageProjectUrl>
-    <RepositoryUrl>https://github.com/David-Desmaisons/DiscogsClient</RepositoryUrl>
-    <PackageLicenseUrl>https://github.com/David-Desmaisons/DiscogsClient/blob/master/LICENSE</PackageLicenseUrl>
-    <Description>C# Client library for Discogs API v2.0
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<AssemblyName>PolyhydraGames.DiscogsClient</AssemblyName>
+		<RootNamespace>DiscogsClient</RootNamespace>
+		<Authors>David Desmaisons, Chris Richmond</Authors>
 
-Features
+		<PackageProjectUrl></PackageProjectUrl>
+		<RepositoryUrl>https://github.com/lancer1977/DiscogsClient</RepositoryUrl>
+		<PackageLicense>https://github.com/lancer1977/DiscogsClient/blob/master/LICENSE</PackageLicense>
+		<Description>
+			C# Client library for Discogs API v2.0
 
-Include API to authorize user (generating OAuth1.0 token and token secret)
-Full support to DataBase API including image download
-Support of identity API
-Asynchroneous and cancellable API using Tasks
-Transparent management of pagination using none blocking API (Reactive IObservable) or IEnumerable</Description>
-    <PackageId>DiscogsClient</PackageId>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageTags>DiscogsClient, Asynchronous, Client</PackageTags>
-    <AssemblyVersion>2.7.1.0</AssemblyVersion>
-    <FileVersion>2.7.1.0</FileVersion>
-    <PackageReleaseNotes>Add async method for paginated queries</PackageReleaseNotes>
-  </PropertyGroup>
+			Features
 
-  <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
-    <PackageReference Include="RateLimiter" Version="1.1.1" />
-    <PackageReference Include="RestSharp" Version="106.3.0" />
-	  <PackageReference Include="RestSharpHelper" Version="1.1.1" />
-	  <PackageReference Include="System.Reactive" Version="4.0.0" />
-  </ItemGroup>
+			Include API to authorize user (generating OAuth1.0 token and token secret)
+			Full support to DataBase API including image download
+			Support of identity API
+			Asynchroneous and cancellable API using Tasks
+			Transparent management of pagination using none blocking API (Reactive IObservable) or IEnumerable
+		</Description>
+		<PackageId>PolyhydraGames.DiscogsClient</PackageId>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageTags>DiscogsClient, Asynchronous, Client</PackageTags>
+		<AssemblyVersion>2.7.2.0</AssemblyVersion>
+		<FileVersion>2.7.2.0</FileVersion>
+		<PackageReleaseNotes>Add async method for paginated queries</PackageReleaseNotes>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="RateLimiter" Version="2.2.0" />
+		<PackageReference Include="RestSharp" Version="112.1.0" />
+		<PackageReference Include="System.Reactive" Version="6.0.1" />
+	</ItemGroup>
 
 </Project>

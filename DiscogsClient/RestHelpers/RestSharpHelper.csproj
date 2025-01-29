@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <AssemblyName>RestSharpHelper</AssemblyName>
+    <RootNamespace>RestSharpHelper</RootNamespace>
+    <Authors>David Desmaisons</Authors>
+    <Version>1.1.1</Version>
+    <PackageProjectUrl></PackageProjectUrl>
+    <RepositoryUrl>https://github.com/David-Desmaisons/RestSharpHelper</RepositoryUrl>
+    <PackageLicenseUrl>https://github.com/David-Desmaisons/RestSharpHelper/blob/master/LICENSE</PackageLicenseUrl>
+    <Description>
+	RestSharpHelper
+	Small library helper for RestSharp including rate limit, oauth1 support, helper for async download, usage of  JSON.Net as json serializer and some helper method
+	</Description>
+    <PackageId>RestSharpHelper</PackageId>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageTags>RestSharp, Asynchronous</PackageTags>
+    <AssemblyVersion>1.1.1.0</AssemblyVersion>
+    <FileVersion>1.1.1.0</FileVersion>
+    <PackageReleaseNotes>Update to >NET Standard</PackageReleaseNotes>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="RateLimiter" Version="1.1.1" />
+    <PackageReference Include="RestSharp" Version="106.3.0" />
+  </ItemGroup>
+
+</Project>

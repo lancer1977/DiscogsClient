@@ -1,13 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35707.178 d17.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscogsClient", "DiscogsClient\DiscogsClient.csproj", "{F0138D25-8712-4DCA-880A-507067AC1326}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscogsClient.Test", "DiscogsClient.Test\DiscogsClient.Test.csproj", "{532D1353-37AA-4548-A711-0E54B04A590A}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscogsAuthenticationConsole", "DiscogsAuthenticationConsole\DiscogsAuthenticationConsole.csproj", "{1C7E9ECB-F292-440A-BA38-B2A0C63E31ED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +21,6 @@ Global
 		{532D1353-37AA-4548-A711-0E54B04A590A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{532D1353-37AA-4548-A711-0E54B04A590A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{532D1353-37AA-4548-A711-0E54B04A590A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1C7E9ECB-F292-440A-BA38-B2A0C63E31ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1C7E9ECB-F292-440A-BA38-B2A0C63E31ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1C7E9ECB-F292-440A-BA38-B2A0C63E31ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1C7E9ECB-F292-440A-BA38-B2A0C63E31ED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

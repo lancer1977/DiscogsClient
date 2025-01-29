@@ -1,8 +1,8 @@
-﻿namespace DiscogsClient.Data.Result
+﻿namespace DiscogsClient.Data.Result;
+
+public enum DiscogsImageType
 {
-    public enum DiscogsImageType
-    {
-        secondary,
-        primary
-    }
+    secondary,
+    primary,
+    release
 }

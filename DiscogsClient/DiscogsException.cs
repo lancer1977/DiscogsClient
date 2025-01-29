@@ -1,11 +1,10 @@
 ﻿using System;
 
-namespace DiscogsClient
+namespace DiscogsClient;
+
+public class DiscogsException : Exception
 {
-    public class DiscogsException : Exception
+    public DiscogsException(string message, Exception innerException): base(message, innerException)
     {
-        public DiscogsException(string message, Exception innerException): base(message, innerException)
-        {
-        }
     }
 }
