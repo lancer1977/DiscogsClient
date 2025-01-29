@@ -49,8 +49,8 @@ jobs:
     displayName: dotnet pack
     inputs:
       command: pack 
-      packagesToPack: 
-      versioningScheme: 'byBuildNumber'      
+      packagesToPack: '$(Project.Path)'
+      versioningScheme: 'byBuildNumber'
       arguments: '--no-build'
 
 
