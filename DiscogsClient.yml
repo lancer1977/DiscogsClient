@@ -44,7 +44,6 @@ jobs:
       command: 'build'
       projects: '$(Project.Path)'      
       arguments: '--configuration Release' 
-
   - task: DotNetCoreCLI@2
     displayName: dotnet pack
     inputs:
@@ -52,9 +51,6 @@ jobs:
       packagesToPack: '$(Project.Path)'
       versioningScheme: 'byBuildNumber'
       arguments: '--no-build'
-
-
-
   - task: NuGetCommand@2
     displayName: NuGet push
     inputs:
