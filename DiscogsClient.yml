@@ -10,7 +10,7 @@ variables:
 trigger:
   branches:
     include:
-    - refs/heads/master
+    - refs/heads/net8
   paths:
     include:
     - DiscogsClient
