@@ -4,7 +4,6 @@ using System.IO;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
 using DiscogsClient.Internal;
-using RestSharpHelper.OAuth1;
 using Xunit.Abstractions;
 
 namespace DiscogsClient.Test;

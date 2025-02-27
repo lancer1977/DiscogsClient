@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-using System.Text.Json.Serialization;
-using DiscogsClient.Data.Query;
+﻿using System.Text.Json.Serialization;
 using DiscogsClient.RestHelpers;
 
 namespace DiscogsClient.Data.Result;
