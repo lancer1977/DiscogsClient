@@ -1,6 +1,8 @@
 ﻿using DiscogsClient.Data.Query;
 using DiscogsClient.Data.Result;
 using DiscogsClient.Internal;
+using DiscogsClient.RestHelpers;
+using DiscogsClient.RestHelpers.OAuth1;
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -9,8 +11,6 @@ using System.Net;
 using System.Reactive.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using DiscogsClient.RestHelpers;
-using DiscogsClient.RestHelpers.OAuth1;
 
 namespace DiscogsClient;
 

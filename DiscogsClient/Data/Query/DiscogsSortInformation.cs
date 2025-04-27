@@ -2,7 +2,7 @@
 
 namespace DiscogsClient.Data.Query;
 
-public class DiscogsSortInformation 
+public class DiscogsSortInformation
 {
     /// <summary>
     ///  Sort items by this field

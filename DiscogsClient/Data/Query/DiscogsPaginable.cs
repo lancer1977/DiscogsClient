@@ -6,7 +6,7 @@ public class DiscogsPaginable
     ///  number(optional) Example: 3
     ///  The page you want to request
     /// </summary>
-    public int? page { get; set;  }
+    public int? page { get; set; }
 
     /// <summary>
     ///  number(optional) Example: 25

@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Linq;
-using System.Text.Json.Serialization;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace DiscogsClient.RestHelpers;
 public class BasicDateTimeConverter : JsonConverter<DateTime?>
 {
     public override DateTime? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
-        if (reader.TokenType == JsonTokenType.String  )
+        if (reader.TokenType == JsonTokenType.String)
         {
             try
             {
@@ -31,7 +31,7 @@ public class BasicDateTimeConverter : JsonConverter<DateTime?>
             catch (Exception)
             {
                 return null;
-            } 
+            }
         }
         return null;
     }
@@ -46,13 +46,12 @@ public class BasicDateTimeConverter : JsonConverter<DateTime?>
         {
             writer.WriteNullValue();
         }
-    } 
- 
+    }
+
     private int Normalize(int value)
     {
         return (value <= 0) ? 1 : value;
     }
 
- 
+
 }
-  

@@ -1,10 +1,10 @@
-﻿using System;
+﻿using RateLimiter;
+using RestSharp;
+using System;
 using System.IO;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
-using RateLimiter;
-using RestSharp;
 
 namespace DiscogsClient.RestHelpers;
 
@@ -29,7 +29,7 @@ public abstract class RestSharpWebClient
     }
 
     private int _TimeOut;
-    protected RestSharpWebClient(string userAgent=null, int timeOut = 10000) 
+    protected RestSharpWebClient(string userAgent = null, int timeOut = 10000)
     {
         _TimeOut = timeOut;
         UserAgent = userAgent;
@@ -37,8 +37,8 @@ public abstract class RestSharpWebClient
 
     protected IRestClient GetClient(string urlBase, int timeOut = 10000)
     {
-        var client = new RestClient(options: new RestClientOptions(){UserAgent = UserAgent, Timeout = TimeSpan.FromSeconds(10), BaseUrl = new Uri(urlBase)});
-        
+        var client = new RestClient(options: new RestClientOptions() { UserAgent = UserAgent, Timeout = TimeSpan.FromSeconds(10), BaseUrl = new Uri(urlBase) });
+
         return Mature(client);
     }
 
@@ -55,10 +55,10 @@ public abstract class RestSharpWebClient
             var response = await GetResponse<T>(request, cancellationToken);
             return response.Data;
         }
-        catch(Exception)
+        catch (Exception)
         {
             return default(T);
-        }    
+        }
     }
 
     private async Task<RestResponse<T>> GetResponse<T>(RestRequest request, CancellationToken cancellationToken, IRestClient client = null)
@@ -116,10 +116,11 @@ public abstract class RestSharpWebClient
 
         Stream ResponseWriter(Stream arg)
         {
-             arg.CopyTo(copyStream);
-             return copyStream;
-        };
-         
+            arg.CopyTo(copyStream);
+            return copyStream;
+        }
+        ;
+
         await GetResponse(request, cancellationToken, client);
     }
 

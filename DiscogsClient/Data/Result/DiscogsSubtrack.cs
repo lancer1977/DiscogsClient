@@ -1,6 +1,6 @@
-﻿using System.Text.Json.Serialization;
+﻿using DiscogsClient.RestHelpers;
 using System;
-using DiscogsClient.RestHelpers;
+using System.Text.Json.Serialization;
 
 namespace DiscogsClient.Data.Result;
 

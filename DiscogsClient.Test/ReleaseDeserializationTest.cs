@@ -75,7 +75,7 @@ public class ReleaseDeserializationTest
             entity_type = "2",
             catno = "",
             resource_url = "https://api.discogs.com/labels/233498",
-            id=233498,
+            id = 233498,
             entity_type_name = "Series"
         };
         var release = JsonConvert.DeserializeObject<DiscogsRelease>(_ReleaseJSON5);

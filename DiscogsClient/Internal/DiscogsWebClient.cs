@@ -1,8 +1,8 @@
-﻿using RateLimiter;
+﻿using DiscogsClient.RestHelpers;
+using DiscogsClient.RestHelpers.OAuth1;
+using RateLimiter;
 using RestSharp;
 using System;
-using DiscogsClient.RestHelpers;
-using DiscogsClient.RestHelpers.OAuth1;
 
 namespace DiscogsClient.Internal;
 
@@ -28,7 +28,7 @@ internal class DiscogsWebClient : RestSharpWebClient, IDiscogsWebClient
 
     private static TimeLimiter SharedTimeLimiter { get; }
 
-    public DiscogsWebClient(OAuthCompleteInformation oAuthCompleteInformation, string userAgent, int timeOut = 10000):
+    public DiscogsWebClient(OAuthCompleteInformation oAuthCompleteInformation, string userAgent, int timeOut = 10000) :
         base(userAgent, timeOut)
     {
         _OAuthCompleteInformation = oAuthCompleteInformation;
@@ -45,10 +45,10 @@ internal class DiscogsWebClient : RestSharpWebClient, IDiscogsWebClient
         SharedTimeLimiter = TimeLimiter.GetFromMaxCountByInterval(60, TimeSpan.FromMinutes(1));
     }
 
-    protected override IRestClient Mature(IRestClient client) 
+    protected override IRestClient Mature(IRestClient client)
     {
         var auth = _OAuthCompleteInformation?.GetAuthenticatorForProtectedResource();
-        return new RestClient(configureRestClient: options => options.Authenticator = auth); 
+        return new RestClient(configureRestClient: options => options.Authenticator = auth);
     }
 
     public RestRequest GetUserIdentityRequest()
@@ -62,11 +62,11 @@ internal class DiscogsWebClient : RestSharpWebClient, IDiscogsWebClient
     }
 
     public RestRequest GetReleaseRequest(int releaseId)
-    {       
+    {
         return GetRequest(_ReleaseUrl).AddUrlSegment(nameof(releaseId), releaseId.ToString());
     }
 
-    public RestRequest GetMasterRequest(int masterId) 
+    public RestRequest GetMasterRequest(int masterId)
     {
         return GetRequest(_MasterUrl).AddUrlSegment(nameof(masterId), masterId.ToString());
     }
@@ -76,17 +76,17 @@ internal class DiscogsWebClient : RestSharpWebClient, IDiscogsWebClient
         return GetRequest(_MasterReleaseVersionUrl).AddUrlSegment(nameof(masterId), masterId.ToString());
     }
 
-    public RestRequest GetArtistRequest(int artistId) 
+    public RestRequest GetArtistRequest(int artistId)
     {
         return GetRequest(_ArtistUrl).AddUrlSegment(nameof(artistId), artistId.ToString());
     }
 
-    public RestRequest GetLabelRequest(int labelId) 
+    public RestRequest GetLabelRequest(int labelId)
     {
         return GetRequest(_LabeltUrl).AddUrlSegment(nameof(labelId), labelId.ToString());
     }
 
-    public RestRequest GetArtistReleaseVersionRequest(int artistId) 
+    public RestRequest GetArtistReleaseVersionRequest(int artistId)
     {
         return GetRequest(_ArtistReleaseUrl).AddUrlSegment(nameof(artistId), artistId.ToString());
     }

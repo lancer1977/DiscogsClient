@@ -38,7 +38,7 @@ internal interface IDiscogsWebClient
 
     Task<HttpStatusCode> Execute(RestRequest request, CancellationToken cancellationToken);
 
-    Task Download(string url, Stream copyStream, CancellationToken cancellationToken, int timeOut=15000);
+    Task Download(string url, Stream copyStream, CancellationToken cancellationToken, int timeOut = 15000);
 
     Task<string> SaveFile(string url, string path, string fileName, CancellationToken cancellationToken, int timeOut = 15000);
 }

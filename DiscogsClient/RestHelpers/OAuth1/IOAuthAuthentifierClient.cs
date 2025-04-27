@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace DiscogsClient.RestHelpers.OAuth1;
 
-public interface IOAuthAuthentifierClient 
+public interface IOAuthAuthentifierClient
 {
     /// <summary>
     /// Authorize the user account.

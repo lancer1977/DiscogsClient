@@ -1,9 +1,9 @@
-﻿using System;
+﻿using RestSharp;
+using RestSharp.Authenticators;
+using System;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web;
-using RestSharp;
-using RestSharp.Authenticators;
 
 namespace DiscogsClient.RestHelpers.OAuth1;
 

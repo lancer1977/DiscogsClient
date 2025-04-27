@@ -1,9 +1,9 @@
 ﻿using DiscogsClient.Data.Query;
+using DiscogsClient.Internal;
 using System.Diagnostics;
 using System.IO;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
-using DiscogsClient.Internal;
 using Xunit.Abstractions;
 
 namespace DiscogsClient.Test;
@@ -15,7 +15,7 @@ public class DiscogsClientTest
     private int _Count;
     private const string Token = "";
 
-    public DiscogsClientTest(ITestOutputHelper testOutputHelper) 
+    public DiscogsClientTest(ITestOutputHelper testOutputHelper)
     {
         _TestOutputHelper = testOutputHelper;
         var tokenInformation = new TokenAuthenticationInformation(Token);
@@ -116,27 +116,27 @@ public class DiscogsClientTest
 
     [Fact(Skip = "Need internet access.")]
     public async Task GetReleaseAsync()
-    {     
+    {
         var res = await _DiscogsClient.GetReleaseAsync(1704673);
         res.Should().NotBeNull();
     }
 
     [Fact(Skip = "Need internet access.")]
-    public async Task GetMasterAsync() 
+    public async Task GetMasterAsync()
     {
         var res = await _DiscogsClient.GetMasterAsync(47813);
         res.Should().NotBeNull();
     }
 
-    [Fact (Skip = "Need internet access.")]
-    public async Task GetArtistAsync() 
-    { 
+    [Fact(Skip = "Need internet access.")]
+    public async Task GetArtistAsync()
+    {
         var res = await _DiscogsClient.GetArtistAsync(224506);
         res.Should().NotBeNull();
     }
 
     [Fact(Skip = "Need internet access.")]
-    public async Task GetArtistReleaseAsync() 
+    public async Task GetArtistReleaseAsync()
     {
         var observable = _DiscogsClient.GetArtistRelease(200818);
         await observable.ForEachAsync(OnResult);
@@ -172,7 +172,7 @@ public class DiscogsClientTest
         }
     }
 
-    private void OnResult(DiscogsLabelRelease result) 
+    private void OnResult(DiscogsLabelRelease result)
     {
         _Count++;
         _TestOutputHelper.WriteLine($"{_Count} - {result.title}");

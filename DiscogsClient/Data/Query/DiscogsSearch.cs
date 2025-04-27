@@ -23,7 +23,7 @@ public class DiscogsSearch
     /// <summary>
     ///  Search release titles. Example: nevermind
     /// </summary>
-    public string  release_title { get; set; }
+    public string release_title { get; set; }
 
     /// <summary>
     ///  Search release credits.Example: kurt

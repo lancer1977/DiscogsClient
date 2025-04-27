@@ -2,5 +2,5 @@
 
 public abstract class DiscogsEntity
 {
-    public int id { get; set;  }
+    public int id { get; set; }
 }

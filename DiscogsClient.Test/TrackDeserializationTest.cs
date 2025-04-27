@@ -7,7 +7,7 @@ public class TrackDeserializationTest : DeserializationTest<DiscogsTrack>
 {
     protected override string JSON => "{\"duration\": \"7:13\",\"position\": \"2\",\"type_\": \"track\",\"extraartists\": [  {\"join\": \"\",\"name\": \"DJ Sangeet\",\"anv\": \"\",\"tracks\": \"\",\"role\": \"Written-By, Producer\",\"resource_url\": \"https://api.discogs.com/ReleaseArtists/25460\",\"id\": 25460  }],\"title\": \"From The Heart\"}";
 
-     
+
 
     [Fact]
     public void DeserializeResult_IsNotNull()
@@ -18,7 +18,7 @@ public class TrackDeserializationTest : DeserializationTest<DiscogsTrack>
     [Fact]
     public void DeserializeDuration_IsOK()
     {
-        Result.duration.Should().Be(new TimeSpan(0,7,13));
+        Result.duration.Should().Be(new TimeSpan(0, 7, 13));
     }
 
     [Fact]

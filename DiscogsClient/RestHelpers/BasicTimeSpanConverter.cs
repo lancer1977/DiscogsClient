@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 
 namespace DiscogsClient.RestHelpers;
 
-public class EnumConverter<T> : JsonConverter<T> where T: struct
+public class EnumConverter<T> : JsonConverter<T> where T : struct
 {
     public override T Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
@@ -56,10 +56,9 @@ public class BasicTimeSpanConverter : JsonConverter<TimeSpan?>
             writer.WriteNullValue();
         }
     }
- 
 
 
 
-} 
 
- 
+}
+

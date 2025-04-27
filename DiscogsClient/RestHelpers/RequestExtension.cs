@@ -1,6 +1,6 @@
-﻿using System;
+﻿using RestSharp;
+using System;
 using System.ComponentModel;
-using RestSharp;
 
 namespace DiscogsClient.RestHelpers;
 

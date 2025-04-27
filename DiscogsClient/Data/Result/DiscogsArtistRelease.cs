@@ -1,6 +1,6 @@
 ﻿namespace DiscogsClient.Data.Result;
 
-public class DiscogsArtistRelease : DiscogsEntity 
+public class DiscogsArtistRelease : DiscogsEntity
 {
     public string artist { get; set; }
     public int main_release { get; set; }
