@@ -16,7 +16,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference> 
     <PackageReference Include="RateLimiter" Version="2.2.0" />
-    <PackageReference Include="RestSharp" Version="112.1.0" />
+    <PackageReference Include="RestSharp" Version="113.0.0" />
     <PackageReference Include="RestSharpHelper" Version="1.1.1" />
     <DotNetCliToolReference Include="dotnet-xunit" Version="2.3.1" />
 	  <PackageReference Include="coverlet.collector" Version="6.0.4">
