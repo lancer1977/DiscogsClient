@@ -1,11 +1,12 @@
-namespace DiscogsClient.Data.Result;
-
-public sealed class DiscogsSearchResults : DiscogsPaginableResults<DiscogsSearchResult>
+namespace DiscogsClient.Data.Result
 {
-    public DiscogsSearchResult[] results { get; set; }
-
-    public override DiscogsSearchResult[] GetResults()
+    public sealed class DiscogsSearchResults : DiscogsPaginableResults<DiscogsSearchResult>
     {
-        return results;
+        public DiscogsSearchResult[] results { get; set; }
+
+        public override DiscogsSearchResult[] GetResults()
+        {
+            return results;
+        }
     }
 }

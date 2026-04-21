@@ -1,18 +1,20 @@
-﻿namespace DiscogsClient.Internal;
-
-public class TokenAuthenticationInformation
+﻿namespace DiscogsClient.Internal
 {
-    public string Token { get; }
-    private readonly string _SecretToken;
-
-    public TokenAuthenticationInformation(string token)
+    public class TokenAuthenticationInformation
     {
-        Token = token;
-        _SecretToken = $"Discogs token={token}";
-    }
+        private readonly string _SecretToken;
 
-    public string GetDiscogsSecretToken()
-    {
-        return _SecretToken;
+        public TokenAuthenticationInformation(string token)
+        {
+            Token = token;
+            _SecretToken = $"Discogs token={token}";
+        }
+
+        public string Token { get; }
+
+        public string GetDiscogsSecretToken()
+        {
+            return _SecretToken;
+        }
     }
 }

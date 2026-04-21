@@ -1,10 +1,11 @@
-﻿namespace DiscogsClient.Data.Result;
-
-public class DiscogsPaginedResult
+﻿namespace DiscogsClient.Data.Result
 {
-    public int per_page { get; set; }
-    public int pages { get; set; }
-    public int page { get; set; }
-    public int items { get; set; }
-    public DiscogsPaginedUrls urls { get; set; }
+    public class DiscogsPaginedResult
+    {
+        public int per_page { get; set; }
+        public int pages { get; set; }
+        public int page { get; set; }
+        public int items { get; set; }
+        public DiscogsPaginedUrls urls { get; set; }
+    }
 }

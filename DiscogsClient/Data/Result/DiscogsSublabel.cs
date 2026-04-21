@@ -1,7 +1,8 @@
-﻿namespace DiscogsClient.Data.Result;
-
-public class DiscogsSimplifiedLabel : DiscogsEntity
+﻿namespace DiscogsClient.Data.Result
 {
-    public string resource_url { get; set; }
-    public string name { get; set; }
+    public class DiscogsSimplifiedLabel : DiscogsEntity
+    {
+        public string resource_url { get; set; }
+        public string name { get; set; }
+    }
 }

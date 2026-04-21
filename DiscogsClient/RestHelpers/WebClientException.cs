@@ -1,10 +1,11 @@
 ﻿using System;
 
-namespace DiscogsClient.RestHelpers;
-
-public class WebClientException : Exception
+namespace DiscogsClient.RestHelpers
 {
-    public WebClientException(string message, Exception innerException) : base(message, innerException)
+    public class WebClientException : Exception
     {
+        public WebClientException(string message, Exception innerException) : base(message, innerException)
+        {
+        }
     }
 }

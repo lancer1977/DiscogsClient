@@ -1,7 +1,8 @@
-﻿namespace DiscogsClient.Data.Result;
-
-public class DiscogsUser
+﻿namespace DiscogsClient.Data.Result
 {
-    public string resource_url { get; set; }
-    public string username { get; set; }
+    public class DiscogsUser
+    {
+        public string resource_url { get; set; }
+        public string username { get; set; }
+    }
 }

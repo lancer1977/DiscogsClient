@@ -1,14 +1,15 @@
-﻿using RestSharp;
-using System;
+﻿using System;
+using RestSharp;
 
-namespace DiscogsClient.RestHelpers;
-
-public class ClientBuilder
+namespace DiscogsClient.RestHelpers
 {
-    public static Func<string, IRestClient> Build { get; set; }
-
-    static ClientBuilder()
+    public class ClientBuilder
     {
-        Build = (url) => new RestClient(url);
+        static ClientBuilder()
+        {
+            Build = url => new RestClient(url);
+        }
+
+        public static Func<string, IRestClient> Build { get; set; }
     }
 }

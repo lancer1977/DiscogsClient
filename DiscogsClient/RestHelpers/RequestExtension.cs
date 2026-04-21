@@ -1,29 +1,38 @@
-﻿using RestSharp;
-using System;
+﻿using System;
 using System.ComponentModel;
+using RestSharp;
 
-namespace DiscogsClient.RestHelpers;
-
-public static class RequestExtension
+namespace DiscogsClient.RestHelpers
 {
-    public static RestRequest AddAsParameter(this RestRequest request, object parameter, ParameterType type = ParameterType.QueryString)
+    public static class RequestExtension
     {
-        if (parameter == null)
-            return request;
-
-        foreach (var property in parameter.GetType().GetProperties())
+        public static RestRequest AddAsParameter(this RestRequest request, object parameter,
+            ParameterType type = ParameterType.QueryString)
         {
-            var value = property.GetValue(parameter, null);
-            if (value == null)
-                continue;
+            if (parameter == null)
+            {
+                return request;
+            }
 
-            var key = property.Name;
-            var desc = Attribute.GetCustomAttributes(property, typeof(DescriptionAttribute));
-            if ((desc.Length > 0))
-                key = ((DescriptionAttribute)desc[0]).Description;
+            foreach (var property in parameter.GetType().GetProperties())
+            {
+                var value = property.GetValue(parameter, null);
+                if (value == null)
+                {
+                    continue;
+                }
 
-            request.AddParameter(key, value, type);
+                var key = property.Name;
+                var desc = Attribute.GetCustomAttributes(property, typeof(DescriptionAttribute));
+                if (desc.Length > 0)
+                {
+                    key = ((DescriptionAttribute)desc[0]).Description;
+                }
+
+                request.AddParameter(key, value, type);
+            }
+
+            return request;
         }
-        return request;
     }
 }

@@ -1,8 +1,9 @@
-﻿namespace DiscogsClient.Data.Result;
-
-public enum DiscogsArtistSortType
+﻿namespace DiscogsClient.Data.Result
 {
-    year,
-    title,
-    format
+    public enum DiscogsArtistSortType
+    {
+        year,
+        title,
+        format
+    }
 }

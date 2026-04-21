@@ -1,8 +1,9 @@
-namespace DiscogsClient.Data.Result;
-
-public abstract class DiscogsPaginableResults<T> where T : DiscogsEntity
+namespace DiscogsClient.Data.Result
 {
-    public DiscogsPaginedResult pagination { get; set; }
+    public abstract class DiscogsPaginableResults<T> where T : DiscogsEntity
+    {
+        public DiscogsPaginedResult pagination { get; set; }
 
-    public abstract T[] GetResults();
+        public abstract T[] GetResults();
+    }
 }

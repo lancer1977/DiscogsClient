@@ -3,55 +3,57 @@ using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace DiscogsClient.RestHelpers;
-public class BasicDateTimeConverter : JsonConverter<DateTime?>
+namespace DiscogsClient.RestHelpers
 {
-    public override DateTime? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+    public class BasicDateTimeConverter : JsonConverter<DateTime?>
     {
-        if (reader.TokenType == JsonTokenType.String)
+        public override DateTime? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            try
+            if (reader.TokenType == JsonTokenType.String)
             {
-                var value = reader.GetString();
-                var values = value.Split('-').Select(int.Parse).ToList();
-
-                switch (values.Count)
+                try
                 {
-                    case 1:
-                        return new DateTime(values[0], 1, 1);
+                    var value = reader.GetString();
+                    var values = value.Split('-').Select(int.Parse).ToList();
 
-                    case 2:
-                        return new DateTime(values[0], Normalize(values[1]), 1);
+                    switch (values.Count)
+                    {
+                        case 1:
+                            return new DateTime(values[0], 1, 1);
 
-                    case 3:
-                        return new DateTime(values[0], Normalize(values[1]), Normalize(values[2]));
+                        case 2:
+                            return new DateTime(values[0], Normalize(values[1]), 1);
+
+                        case 3:
+                            return new DateTime(values[0], Normalize(values[1]), Normalize(values[2]));
+                    }
+
+                    return null;
                 }
-                return null;
+                catch (Exception)
+                {
+                    return null;
+                }
             }
-            catch (Exception)
+
+            return null;
+        }
+
+        public override void Write(Utf8JsonWriter writer, DateTime? value, JsonSerializerOptions options)
+        {
+            if (value.HasValue)
             {
-                return null;
+                writer.WriteStringValue(value.Value.ToString("yyyy-MM-dd"));
+            }
+            else
+            {
+                writer.WriteNullValue();
             }
         }
-        return null;
-    }
 
-    public override void Write(Utf8JsonWriter writer, DateTime? value, JsonSerializerOptions options)
-    {
-        if (value.HasValue)
+        private int Normalize(int value)
         {
-            writer.WriteStringValue(value.Value.ToString("yyyy-MM-dd"));
-        }
-        else
-        {
-            writer.WriteNullValue();
+            return value <= 0 ? 1 : value;
         }
     }
-
-    private int Normalize(int value)
-    {
-        return (value <= 0) ? 1 : value;
-    }
-
-
 }

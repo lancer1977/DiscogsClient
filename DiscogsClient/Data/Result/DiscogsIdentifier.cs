@@ -1,8 +1,9 @@
-﻿namespace DiscogsClient.Data.Result;
-
-public class DiscogsIdentifier
+﻿namespace DiscogsClient.Data.Result
 {
-    public string type { get; set; }
-    public string value { get; set; }
-    public string description { get; set; }
+    public class DiscogsIdentifier
+    {
+        public string type { get; set; }
+        public string value { get; set; }
+        public string description { get; set; }
+    }
 }

@@ -1,6 +1,7 @@
-﻿namespace DiscogsClient.Data.Result;
-
-public abstract class DiscogsEntity
+﻿namespace DiscogsClient.Data.Result
 {
-    public int id { get; set; }
+    public abstract class DiscogsEntity
+    {
+        public int id { get; set; }
+    }
 }

@@ -1,11 +1,12 @@
-﻿namespace DiscogsClient.Data.Result;
-
-public sealed class DiscogsArtistReleases : DiscogsPaginableResults<DiscogsArtistRelease>
+﻿namespace DiscogsClient.Data.Result
 {
-    public DiscogsArtistRelease[] releases { get; set; }
-
-    public override DiscogsArtistRelease[] GetResults()
+    public sealed class DiscogsArtistReleases : DiscogsPaginableResults<DiscogsArtistRelease>
     {
-        return releases;
+        public DiscogsArtistRelease[] releases { get; set; }
+
+        public override DiscogsArtistRelease[] GetResults()
+        {
+            return releases;
+        }
     }
 }

@@ -1,7 +1,8 @@
-﻿namespace DiscogsClient.Data.Result;
-
-public class DiscogsRating
+﻿namespace DiscogsClient.Data.Result
 {
-    public decimal average { get; set; }
-    public int count { get; set; }
+    public class DiscogsRating
+    {
+        public decimal average { get; set; }
+        public int count { get; set; }
+    }
 }

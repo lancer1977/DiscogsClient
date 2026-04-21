@@ -1,11 +1,12 @@
-﻿namespace DiscogsClient.Data.Result;
-
-public sealed class DiscogsReleaseVersions : DiscogsPaginableResults<DiscogsReleaseVersion>
+﻿namespace DiscogsClient.Data.Result
 {
-    public DiscogsReleaseVersion[] versions { get; set; }
-
-    public override DiscogsReleaseVersion[] GetResults()
+    public sealed class DiscogsReleaseVersions : DiscogsPaginableResults<DiscogsReleaseVersion>
     {
-        return versions;
+        public DiscogsReleaseVersion[] versions { get; set; }
+
+        public override DiscogsReleaseVersion[] GetResults()
+        {
+            return versions;
+        }
     }
 }

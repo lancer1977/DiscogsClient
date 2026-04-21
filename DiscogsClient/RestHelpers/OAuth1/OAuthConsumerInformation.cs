@@ -1,20 +1,21 @@
 ﻿using RestSharp.Authenticators;
 
-namespace DiscogsClient.RestHelpers.OAuth1;
-
-public class OAuthConsumerInformation
+namespace DiscogsClient.RestHelpers.OAuth1
 {
-    public string ConsumerKey { get; }
-    public string ConsumerSecret { get; }
-
-    public OAuthConsumerInformation(string consumerKey, string consumerSecret)
+    public class OAuthConsumerInformation
     {
-        ConsumerKey = consumerKey;
-        ConsumerSecret = consumerSecret;
-    }
+        public OAuthConsumerInformation(string consumerKey, string consumerSecret)
+        {
+            ConsumerKey = consumerKey;
+            ConsumerSecret = consumerSecret;
+        }
 
-    public OAuth1Authenticator GetAuthenticatorForRequestToken()
-    {
-        return OAuth1Authenticator.ForRequestToken(ConsumerKey, ConsumerSecret);
+        public string ConsumerKey { get; }
+        public string ConsumerSecret { get; }
+
+        public OAuth1Authenticator GetAuthenticatorForRequestToken()
+        {
+            return OAuth1Authenticator.ForRequestToken(ConsumerKey, ConsumerSecret);
+        }
     }
 }
