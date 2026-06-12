@@ -31,8 +31,14 @@
 
 	<ItemGroup>
 		<PackageReference Include="RateLimiter" Version="2.2.0" />
-		<PackageReference Include="RestSharp" Version="113.1.0" />
+		<PackageReference Include="RestSharp" Version="114.0.0" />
 		<PackageReference Include="System.Reactive" Version="6.1.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<!-- RestHelpers is a nested source folder plus a separate project; exclude its generated
+		     intermediate files so the parent project only compiles the shared source files. -->
+		<Compile Remove="RestHelpers/obj/**/*.cs" />
 	</ItemGroup>
 
 </Project>
