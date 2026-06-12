@@ -114,3 +114,9 @@ private static string GetToken(string url)
 }
 ```
 See [DiscogsClientTest](https://github.com/David-Desmaisons/DiscogsClient/blob/master/DiscogsClient.Test/DiscogsClientTest.cs) and [DiscogsAuthenticationConsole](https://github.com/David-Desmaisons/DiscogsClient/blob/master/DiscogsAuthenticationConsole/Program.cs) for full samples of available APIs.
+
+## Documentation
+
+- [Docs Index](./docs/README.md)
+- [Feature Index](./docs/features/README.md)
+- [Roadmap Index](./docs/roadmaps/README.md)
