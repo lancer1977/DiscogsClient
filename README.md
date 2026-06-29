@@ -1,13 +1,11 @@
 # DiscogsClient
 
-[![Build status](https://img.shields.io/appveyor/ci/David-Desmaisons/DiscogsClient.svg)](https://ci.appveyor.com/project/David-Desmaisons/DiscogsClient)
-[![NuGet Badge](https://img.shields.io/nuget/v/DiscogsClient.svg)](https://www.nuget.org/packages/DiscogsClient/)
-[![MIT License](https://img.shields.io/github/license/David-Desmaisons/DiscogsClient.svg)](https://github.com/David-Desmaisons/DiscogsClient/blob/master/LICENSE)
+[![NuGet](https://img.shields.io/nuget/v/PolyhydraGames.DiscogsClient.svg)](https://www.nuget.org/packages/PolyhydraGames.DiscogsClient/)
+[![License](https://img.shields.io/github/license/lancer1977/DiscogsClient.svg)](./LICENSE)
 
+C# client library for [Discogs API v2.0](https://www.discogs.com/developers/).
 
-C# Client library for [Discogs API v2.0](https://www.discogs.com/developers/)
-
-Check demo application [Music.Cover.Finder](https://github.com/David-Desmaisons/Music.Cover.Finder)
+The current package is `PolyhydraGames.DiscogsClient`. The library targets `net8.0`; the local test project targets `net10.0`.
 
 ## Tags
 
@@ -19,105 +17,131 @@ Check demo application [Music.Cover.Finder](https://github.com/David-Desmaisons/
 - client
 
 ## Features
-* Include API to authorize user (generating OAuth1.0 token and token secret)
-* Full support to [DataBase API](https://www.discogs.com/developers/#page:database) including image download
-* Support of identity API
-* Transparent support of rate limit
-* Asynchroneous and cancellable API using Tasks
-* Transparent management of pagination using none blocking API (Reactive IObservable) or IEnumerable
 
-## Sample usage
+- Include API to authorize user with OAuth 1.0 token and token secret.
+- Full support to [Database API](https://www.discogs.com/developers/#page:database), including image download.
+- Support of identity API.
+- Transparent support of rate limit.
+- Asynchronous and cancellable API using Tasks.
+- Transparent management of pagination using non-blocking API (`IObservable`) or `IEnumerable`.
 
-### Create discogs client
+## Install
 
-#### Oauth authentication
-```C#
-  //Create authentication object using private and public keys: you should fournish real keys here
-  var oAuthCompleteInformation = new OAuthCompleteInformation("consumerKey", 
-                                  "consumerSecret", "token", "tokenSecret");
-  //Create discogs client using the authentication
-  var discogsClient = new DiscogsClient(oAuthCompleteInformation);
+```bash
+dotnet add package PolyhydraGames.DiscogsClient
 ```
-#### Token based authentication
-```C#
-  //Create authentication based on Discogs token
-  var tokenInformation = new TokenAuthenticationInformation("my-token");
-  //Create discogs client using the authentication
-  var discogsClient = new DiscogsClient(tokenInformation);
-```
-#### Search The DataBase
 
-Using IObservable:
-```C#
-var discogsSearch = new DiscogsSearch()
+## Sample Usage
+
+### OAuth Authentication
+
+```csharp
+using DiscogsClient.RestHelpers.OAuth1;
+
+var auth = new OAuthCompleteInformation(
+    "consumerKey",
+    "consumerSecret",
+    "token",
+    "tokenSecret");
+
+var discogsClient = new DiscogsClient.DiscogsClient(auth);
+```
+
+### Token Authentication
+
+```csharp
+using DiscogsClient.Internal;
+
+var tokenInformation = new TokenAuthenticationInformation("my-token");
+var discogsClient = new DiscogsClient.DiscogsClient(tokenInformation);
+```
+
+### Search the Database
+
+Using `IObservable`:
+
+```csharp
+using DiscogsClient.Data.Query;
+
+var search = new DiscogsSearch
 {
-  artist = "Ornette Coleman",
-  release_title = "The Shape Of Jazz To Come"
+    artist = "Ornette Coleman",
+    release_title = "The Shape Of Jazz To Come"
 };
-    
-//Retrieve observable result from search
-var observable = _DiscogsClient.Search(discogsSearch);
+
+var observable = discogsClient.Search(search);
 ```
 
-Using IEnumerable:
-```C#
-//Alternatively retreive same result as enumerable 
-var enumerable = _DiscogsClient.SearchAsEnumerable(discogsSearch);
+Using `IEnumerable`:
+
+```csharp
+var enumerable = discogsClient.SearchAsEnumerable(search);
 ```
 
-#### Get Release, Master, Artist or Label Information
-```C#
-var release = await _DiscogsClient.GetReleaseAsync(1704673);
+### Get Release, Master, Artist, or Label Information
+
+```csharp
+var release = await discogsClient.GetReleaseAsync(1704673);
+var master = await discogsClient.GetMasterAsync(47813);
+var artist = await discogsClient.GetArtistAsync(224506);
+var label = await discogsClient.GetLabelAsync(125);
 ```
 
-```C#
-var master = await _DiscogsClient.GetMasterAsync(47813);
+### Download an Image
+
+```csharp
+var master = await discogsClient.GetMasterAsync(47813);
+
+await discogsClient.SaveImageAsync(
+    master.images[0],
+    Path.GetTempPath(),
+    "Ornette-TSOAJTC");
 ```
 
-```C#
-var artist = await _DiscogsClient.GetArtistAsync(224506);
+### Authorize a New User
+
+```csharp
+using DiscogsClient.RestHelpers.OAuth1;
+
+var consumer = new OAuthConsumerInformation("consumerKey", "consumerSecret");
+var authentifierClient = new DiscogsAuthentifierClient(consumer);
+
+var oauth = await authentifierClient.Authorize(url => Task.FromResult(GetToken(url)));
 ```
 
-```C#
-var label = await _DiscogsClient.GetLabelAsync(125);
-```
+`Authorize` takes a `Func<string, Task<string>>` parameter. It receives the Discogs authorization URL and returns the verifier value from the completed authorization flow.
 
-#### Download Image
-```C#
-//Retrieve Release information
-var res = await _DiscogsClient.GetMasterAsync(47813);
-  
-//Download the first image of the release
-await _DiscogsClient.SaveImageAsync(res.images[0], Path.GetTempPath(), "Ornette-TSOAJTC");
-```
-
-#### OAuth: Authorize new user
-```C#
-//Create authentificator information: you should fournish real keys here
-var oAuthConsumerInformation = new OAuthConsumerInformation("consumerKey", "consumerSecret");
-  
-//Create Authentifier client
-var discogsAuthentifierClient = new DiscogsAuthentifierClient(oAuthConsumerInformation);
-
-//Retreive Token and Token secret 
-var oauth = discogsClient.Authorize(s => Task.FromResult(GetToken(s))).Result;
-```
-
-Authorize takes a Func< string, Task< string>> as parameter, receiving the authentication url and returning the corresponding access key. Trivial implementation:
-
-```C#
+```csharp
 private static string GetToken(string url)
 {
-  Console.WriteLine("Please authorize the application and enter the final key in the console");
-  Process.Start(url);
-  return Console.ReadLine();
+    Console.WriteLine("Authorize the application, then enter the verifier value.");
+    Process.Start(url);
+    return Console.ReadLine();
 }
 ```
-See [DiscogsClientTest](https://github.com/David-Desmaisons/DiscogsClient/blob/master/DiscogsClient.Test/DiscogsClientTest.cs) and [DiscogsAuthenticationConsole](https://github.com/David-Desmaisons/DiscogsClient/blob/master/DiscogsAuthenticationConsole/Program.cs) for full samples of available APIs.
 
+See [DiscogsClientTest](./DiscogsClient.Test/DiscogsClientTest.cs) and [DiscogsAuthenticationConsole](./DiscogsAuthenticationConsole/Program.cs) for fuller samples.
 
-## 📖 Documentation
+## Build, Test, and Pack
+
+```bash
+dotnet restore PolyhydraGames.Discogs.sln
+dotnet test DiscogsClient.Test/DiscogsClient.Test.csproj
+dotnet pack DiscogsClient/PolyhydraGames.Discogs.csproj --configuration Release
+```
+
+The normal test path is deterministic and does not require Discogs credentials. Live Discogs API tests are opt-in:
+
+```bash
+DISCOGS_LIVE_TESTS=true DISCOGS_TOKEN=<token> dotnet test DiscogsClient.Test/DiscogsClient.Test.csproj
+```
+
+Publish packages from the generated `bin/Release` package output to the intended NuGet feed. The removed legacy `DiscogsClient.yml` Azure pipeline is not the canonical release path for this repository.
+
+## Documentation
+
 Detailed documentation can be found in the following sections:
+
 - [Docs README](./docs/README.md)
 - [Feature Index](./docs/features/README.md)
 - [Core Capabilities](./docs/features/core-capabilities.md)

@@ -30,6 +30,15 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <Compile Remove="RestHelpers/bin/**" />
+        <Compile Remove="RestHelpers/obj/**" />
+        <EmbeddedResource Remove="RestHelpers/bin/**" />
+        <EmbeddedResource Remove="RestHelpers/obj/**" />
+        <None Remove="RestHelpers/bin/**" />
+        <None Remove="RestHelpers/obj/**" />
+    </ItemGroup>
+
+    <ItemGroup>
         <PackageReference Include="RateLimiter" Version="2.2.0"/>
         <PackageReference Include="RestSharp" Version="114.0.0"/>
         <PackageReference Include="System.Reactive" Version="6.1.0"/>

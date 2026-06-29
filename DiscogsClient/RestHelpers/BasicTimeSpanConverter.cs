@@ -9,7 +9,7 @@ namespace DiscogsClient.RestHelpers
     {
         public override T Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            return Enum.Parse<T>(reader.GetString());
+            return (T)Enum.Parse(typeof(T), reader.GetString());
         }
 
         public override void Write(Utf8JsonWriter writer, T value, JsonSerializerOptions options)

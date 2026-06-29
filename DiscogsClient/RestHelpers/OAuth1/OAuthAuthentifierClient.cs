@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
-using System.Web;
 using RestSharp;
 using RestSharp.Authenticators;
 
@@ -103,8 +103,30 @@ namespace DiscogsClient.RestHelpers.OAuth1
 
         private OAuthTokenInformation GetTokenInformationFromBodyResponse(RestResponse response)
         {
-            var qs = HttpUtility.ParseQueryString(response.Content);
+            var qs = ParseQueryString(response.Content);
             return new OAuthTokenInformation(qs[_Token], qs[_TokenSecret]);
+        }
+
+        private static Dictionary<string, string> ParseQueryString(string content)
+        {
+            var result = new Dictionary<string, string>();
+            if (string.IsNullOrWhiteSpace(content))
+            {
+                return result;
+            }
+
+            foreach (var pair in content.Split('&'))
+            {
+                var parts = pair.Split(new[] { '=' }, 2);
+                if (parts.Length != 2)
+                {
+                    continue;
+                }
+
+                result[WebUtility.UrlDecode(parts[0])] = WebUtility.UrlDecode(parts[1]);
+            }
+
+            return result;
         }
 
         private bool CheckResponse(RestResponse response)
