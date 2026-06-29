@@ -1,0 +1,65 @@
+name: Package
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+      - main
+  release:
+    types:
+      - published
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: Publish the package to GitHub Packages
+        required: true
+        default: "false"
+        type: choice
+        options:
+          - "false"
+          - "true"
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: |
+            8.0.x
+            10.0.x
+
+      - name: Restore
+        run: dotnet restore PolyhydraGames.Discogs.sln
+
+      - name: Test
+        run: dotnet test DiscogsClient.Test/DiscogsClient.Test.csproj --configuration Release --no-restore -v:minimal
+
+      - name: Pack
+        run: dotnet pack DiscogsClient/PolyhydraGames.Discogs.csproj --configuration Release --no-restore --output artifacts/packages
+
+      - name: Upload package artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: discogsclient-packages
+          path: artifacts/packages/*.nupkg
+          if-no-files-found: error
+
+      - name: Publish to GitHub Packages
+        if: github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && inputs.publish == 'true')
+        env:
+          NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          dotnet nuget push "artifacts/packages/*.nupkg" \
+            --api-key "$NUGET_AUTH_TOKEN" \
+            --source "https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json" \
+            --skip-duplicate
