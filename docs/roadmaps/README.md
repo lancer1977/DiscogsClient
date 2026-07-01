@@ -1,7 +1,6 @@
 # Api.Discogs Roadmaps
 
-Roadmap documentation for Api.Discogs lives here.
+This local planning file has been migrated. GitHub Issues are the canonical tracker.
 
-## Active Roadmaps
-
-- [Version 1 roadmap](../roadmap/v1/README.md)
+Canonical GitHub issue: https://github.com/lancer1977/DiscogsClient/issues/8
+Original source kind: roadmap
