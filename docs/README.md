@@ -1,11 +1,12 @@
 # Api.Discogs
 
-Text-to-Speech API integration for Polyhydra Games.
+Discogs API client and authentication tooling for Polyhydra Games.
 
 ## Contents
 
 - [Docs home](./)
 - [api.discogs](./api-discogs.md)
+- [Validation](./validation.md)
 
 ## Roadmap
 

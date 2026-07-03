@@ -118,5 +118,6 @@ See [DiscogsClientTest](https://github.com/David-Desmaisons/DiscogsClient/blob/m
 ## Documentation
 
 - [Docs Index](./docs/README.md)
+- [Validation](./docs/validation.md)
 - [Feature Index](./docs/features/README.md)
 - [Roadmap Index](./docs/roadmaps/README.md)

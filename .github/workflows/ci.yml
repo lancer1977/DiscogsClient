@@ -22,11 +22,5 @@ jobs:
         with:
           dotnet-version: 10.0.x
 
-      - name: Restore
-        run: dotnet restore "DiscogsClient.sln"
-
-      - name: Build
-        run: dotnet build "DiscogsClient.sln" --configuration Release --no-restore
-
-      - name: Test
-        run: dotnet test "DiscogsClient.sln" --configuration Release --no-restore --no-build --verbosity normal
+      - name: Validate
+        run: bash scripts/validate.sh

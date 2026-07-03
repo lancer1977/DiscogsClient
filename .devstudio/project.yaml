@@ -1,12 +1,35 @@
-name: change-me
-repo_root: change-me
+schema: 1
+project:
+  name: Api.Discogs
+  kind: dotnet-library
+  owner: lancer1977
+  languages:
+    - csharp
+  frameworks:
+    - dotnet
+    - xunit
 
-languages: []
-frameworks: []
+validation:
+  validate: bash scripts/validate.sh
+  scope:
+    - Restore, release build, and xUnit test coverage for the Discogs client solution.
+    - Secret-free local validation; live Discogs OAuth credentials remain optional and local-only.
 
 ci:
-  build: []
-  test: []
+  build:
+    - dotnet build DiscogsClient.sln --configuration Release --no-restore
+  test:
+    - bash scripts/validate.sh
+
+tracking:
+  primary: local-00-agile
+  dev-studio: DEV_STUDIO.md
+
+docs:
+  index: docs/README.md
+  validation: docs/validation.md
+  api: docs/api-discogs.md
+  roadmap: docs/roadmaps/README.md
 
 devstudio:
   runtime_model: three-agent

@@ -4,6 +4,16 @@
 
 **Purpose:** Discogs API client + auth console.
 
+## Validation
+
+Use the repo-native validation gate:
+
+```bash
+bash scripts/validate.sh
+```
+
+Live Discogs OAuth credentials are not required for automated validation.
+
 ## Projects
 
 | Project | Files | Purpose |
