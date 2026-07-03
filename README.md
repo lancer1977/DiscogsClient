@@ -125,9 +125,7 @@ See [DiscogsClientTest](./DiscogsClient.Test/DiscogsClientTest.cs) and [DiscogsA
 ## Build, Test, and Pack
 
 ```bash
-dotnet restore PolyhydraGames.Discogs.sln
-dotnet test DiscogsClient.Test/DiscogsClient.Test.csproj
-dotnet pack DiscogsClient/PolyhydraGames.Discogs.csproj --configuration Release
+bash scripts/validate.sh
 ```
 
 The normal test path is deterministic and does not require Discogs credentials. Live Discogs API tests are opt-in:
@@ -151,6 +149,7 @@ validated.
 Detailed documentation can be found in the following sections:
 
 - [Docs README](./docs/README.md)
+- [Validation](./docs/validation.md)
 - [Feature Index](./docs/features/README.md)
 - [Core Capabilities](./docs/features/core-capabilities.md)
 - [Roadmap Index](./docs/roadmaps/README.md)
