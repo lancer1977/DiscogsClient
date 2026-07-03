@@ -136,7 +136,7 @@ The normal test path is deterministic and does not require Discogs credentials. 
 DISCOGS_LIVE_TESTS=true DISCOGS_TOKEN=<token> dotnet test DiscogsClient.Test/DiscogsClient.Test.csproj
 ```
 
-GitHub Actions runs the same restore/test/pack path in `.github/workflows/package.yml`
+GitHub Actions runs the canonical restore/test/pack path in `.github/workflows/package.yml`
 and uploads the generated `.nupkg` as the `discogsclient-packages` workflow
 artifact. Publishing defaults to GitHub Packages through the release trigger or
 manual workflow dispatch with `publish=true`; it uses the repository
