@@ -1,12 +1,35 @@
-name: change-me
-repo_root: change-me
+schema: 1
+project:
+  name: DiscogsClient
+  kind: dotnet-library
+  owner: lancer1977
+  languages:
+    - csharp
+  frameworks:
+    - dotnet
+    - xunit
 
-languages: []
-frameworks: []
+validation:
+  validate: bash scripts/validate.sh
+  scope:
+    - Restore, release test, and package generation for PolyhydraGames.DiscogsClient.
+    - Secret-free deterministic tests by default; live Discogs API tests remain opt-in.
 
 ci:
-  build: []
-  test: []
+  build:
+    - dotnet pack DiscogsClient/PolyhydraGames.Discogs.csproj --configuration Release --no-restore --output artifacts/packages
+  test:
+    - bash scripts/validate.sh
+
+tracking:
+  primary: local-00-agile
+  dev-studio: DEV_STUDIO.md
+
+docs:
+  index: docs/README.md
+  validation: docs/validation.md
+  features: docs/features/README.md
+  roadmap: docs/roadmaps/README.md
 
 devstudio:
   runtime_model: three-agent
