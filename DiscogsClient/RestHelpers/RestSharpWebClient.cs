@@ -67,7 +67,12 @@ public abstract class RestSharpWebClient
         var response = await TimeLimiter.Enqueue(async () => await ExecuteBasic<T>(client, request, cancellationToken), cancellationToken);
 
         if (response.ErrorException != null)
-            throw new WebClientException(_ErrorMessage, response.ErrorException);
+            throw new WebClientException(
+                WebClientFailureKind.RequestExecutionFailed,
+                _ErrorMessage,
+                request.Resource,
+                request.Method,
+                response.ErrorException);
 
         CheckCallResult(response.StatusCode, client, request);
 
@@ -129,7 +134,12 @@ public abstract class RestSharpWebClient
         var response = await TimeLimiter.Enqueue(async () => await ExecuteBasic(client, request, cancellationToken), cancellationToken);
 
         if (response.ErrorException != null)
-            throw new WebClientException(_ErrorMessage, response.ErrorException);
+            throw new WebClientException(
+                WebClientFailureKind.RequestExecutionFailed,
+                _ErrorMessage,
+                request.Resource,
+                request.Method,
+                response.ErrorException);
 
         return response;
     }
