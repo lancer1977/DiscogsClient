@@ -72,7 +72,7 @@ namespace DiscogsClient.RestHelpers
 
             if (response.ErrorException != null)
             {
-                throw new WebClientException(_ErrorMessage, response.ErrorException);
+                throw CreateWebClientException(request, response.ErrorException);
             }
 
             CheckCallResult(response.StatusCode, client, request);
@@ -144,10 +144,20 @@ namespace DiscogsClient.RestHelpers
 
             if (response.ErrorException != null)
             {
-                throw new WebClientException(_ErrorMessage, response.ErrorException);
+                throw CreateWebClientException(request, response.ErrorException);
             }
 
             return response;
+        }
+
+        private static WebClientException CreateWebClientException(RestRequest request, Exception innerException)
+        {
+            return new WebClientException(
+                _ErrorMessage,
+                innerException,
+                WebClientFailureKind.RequestExecutionFailed,
+                request.Resource,
+                request.Method.ToString());
         }
 
         private static Task<RestResponse> ExecuteBasic(IRestClient client, RestRequest request,
