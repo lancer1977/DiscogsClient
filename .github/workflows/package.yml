@@ -21,8 +21,8 @@ on:
           - "true"
 
 concurrency:
-  group: discogsclient-package-${{ github.event_name }}-${{ github.event.pull_request.number || github.ref }}
-  cancel-in-progress: true
+  group: discogsclient-package-${{ github.event_name }}-${{ github.event.pull_request.number || github.ref }}-${{ inputs.publish || 'none' }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' || github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.publish != 'true') }}
 
 permissions:
   contents: read
